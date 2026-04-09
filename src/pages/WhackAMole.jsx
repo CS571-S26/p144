@@ -15,7 +15,7 @@ export default function WhackAMole(props) {
 
     return (
         <>
-            <h1>Whack a Bucky!</h1>
+            <h1 style={{textAlign: "center"}}>Whack a Bucky!</h1>
             <h5> Click on bucky when he appears as many times as you can before the time runs out!</h5>
 
             <Container style={{ minHeight: '80vh' }}>
