@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 
 
 export default function Timer(props) {
 
-    const [time, setTime] = useState(1);
+    const [time, setTime] = useState(60);
     const [isRunning, setRunning] = useState(false);
 
     useEffect(() => {
@@ -33,8 +33,8 @@ export default function Timer(props) {
     }
 
     return (
-        <div>
-            <h3>Time Remaining: {time}</h3>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span>Time Remaining: {time}</span>
             <Button onClick={handleIsRunning} disabled={props.gameState}>
                 {isRunning ? "Stop" : "Start"}
             </Button>

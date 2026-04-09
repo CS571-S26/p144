@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 
 import { Button, Row, Col, Container } from "react-bootstrap";
-import { } from "react-router-dom";
 import Timer from "../components/timer";
 import BuckySquare from "../components/BuckySquare";
-
-
 
 
 export default function WhackAMole(props) {
@@ -16,11 +13,10 @@ export default function WhackAMole(props) {
 
     const [squares, setSquares] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
 
-
     return (
         <>
-            <h1>Whack a Mole!</h1>
-
+            <h1>Whack a Bucky!</h1>
+            <h5> Click on bucky when he appears as many times as you can before the time runs out!</h5>
 
             <Container style={{ minHeight: '80vh' }}>
                 <Row style={{ height: '80vh' }}>
