@@ -32,7 +32,7 @@ export default function Timer(props) {
         setRunning(!isRunning)
     }
 
-    return (
+    return (        
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <span>Time Remaining: {time}</span>
             <Button onClick={handleIsRunning} disabled={props.gameState}>
