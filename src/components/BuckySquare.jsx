@@ -9,8 +9,14 @@ import holeWithBucky from "../assets/holeWithBucky.png"
 function BuckySquare(props) {
 
     const handleClick = (e) => {
-        if ((!props.gameOver) && (props.active)) {
-            props.onWhack(props.number);
+        if ((props.gameOver)) {
+            return;
+        }
+        if ((props.active)) {
+            props.onWhack();
+        }
+        else{
+            props.onMiss();
         }
     }
 

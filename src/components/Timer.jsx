@@ -14,6 +14,10 @@ export default function Timer(props) {
 
     useEffect(() => {
 
+        if(!isRunning){
+            return;
+        }
+
         if (time === 0) {
             setRunning(false);
 
@@ -39,6 +43,10 @@ export default function Timer(props) {
 
     useEffect(() => {
 
+        if(!countDownRunning){
+            return;
+        }
+
         if (countDown === 0) {
 
             setCountDownRunning(false);
@@ -61,13 +69,23 @@ export default function Timer(props) {
     }, [countDownRunning, countDown]);
 
 
+    const startTimer = () => {
+        props.setGameStarted(false);
+        props.setGameOver(false);
+        
+
+        setCountDownRunning(true);
+
+
+
+    }
     
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             {countDownRunning && (<h5>Game Starts in: {countDown}</h5>)}
             {(!isRunning && !countDownRunning) &&
-                <Button onClick={() => setCountDownRunning(true)} disabled={isRunning}>
+                <Button onClick={startTimer} disabled={isRunning}>
                     {props.gameOver ? "Play Again" : "Start Game!"}
                 </Button>
             }

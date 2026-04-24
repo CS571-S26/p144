@@ -23,7 +23,7 @@ export default function WhackAMole(props) {
 
     const [finalScore, setFinalScore] = useState();
 
-    const [highScore, setHighScore] = useState();
+    const [highScore, setHighScore] = useState(0);
 
 
     //Initial Set Up
@@ -50,11 +50,11 @@ export default function WhackAMole(props) {
     useEffect(() => {
 
         if (gameOver) {
-            
-            if((!highScore) || (score > highScore)){
+
+            if ((!highScore) || (score > highScore)) {
                 localStorage.setItem("WAB_HighScore", score)
             }
-            
+
             setActiveSquares([]);
             setFinalScore(score);
             setScore(0);
@@ -68,12 +68,18 @@ export default function WhackAMole(props) {
         generateNewSquare();
     }
 
+    const handleMiss = () => {
+        if(score === 0){
+            return;
+        }
+        generateNewSquare();
+        setScore(oldScore => oldScore - 1);
+    }
+
     const generateNewSquare = () => {
         const newActiveSquare = [Math.floor((Math.random() * 15) + 1)]
         setActiveSquares(newActiveSquare)
     }
-
-
 
     return (
         <>
@@ -91,6 +97,7 @@ export default function WhackAMole(props) {
                                     gameOver={gameOver}
                                     active={activeSquares.includes(square)}
                                     onWhack={handleWhack}
+                                    onMiss={handleMiss}
                                 />
                             ))}
                         </div>
@@ -106,15 +113,15 @@ export default function WhackAMole(props) {
                 </div>
 
                 <div className="info-panel">
+                    <div style={{margin: "20px"}}>
+                        <h4>Score: {score}</h4>
+                        <h4>High Score: {highScore}</h4>
+                    </div>
                     <Timer
                         gameOver={gameOver}
                         setGameOver={setGameOver}
                         setGameStarted={setGameStarted}
-                        gameStarted={gameStarted}
                     />
-                    <div>
-                        <h4>Score: {score}</h4>
-                    </div>
                 </div>
             </div >
         </>

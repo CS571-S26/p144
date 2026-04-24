@@ -28,9 +28,9 @@
     justify-content: center;
     align-items: center;
     border: 2px;
+    height: 40%;
     border-style: solid;
     border-color: black;
     border-radius: 10px;
     background-color: #f8f9fa;
 }
-
