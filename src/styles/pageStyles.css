@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
 }
 
 .game-grid {
@@ -12,6 +11,14 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
+}
+
+.game-over {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .info-panel {
@@ -23,7 +30,7 @@
     border: 2px;
     border-style: solid;
     border-color: black;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #f8f9fa;
 }
 

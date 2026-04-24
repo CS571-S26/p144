@@ -4,14 +4,22 @@ import { Button, Row, Col, Container } from "react-bootstrap";
 
 export default function Timer(props) {
 
-    const [time, setTime] = useState(60);
+    const [time, setTime] = useState(5);
+    const [countDown, setCountDown] = useState(3);
+
     const [isRunning, setRunning] = useState(false);
+    const [countDownRunning, setCountDownRunning] = useState(false)
+
+
 
     useEffect(() => {
 
         if (time === 0) {
             setRunning(false);
-            props.endGame(true);
+
+            //I need to change this to the initial value;
+            setTime(5);
+            props.setGameOver(true);
             return;
         }
 
@@ -24,20 +32,46 @@ export default function Timer(props) {
 
         return () => clearInterval(interval);
 
-
     }, [isRunning, time]);
 
 
-    const handleIsRunning = () => {
-        setRunning(!isRunning)
-    }
 
-    return (        
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span>Time Remaining: {time}</span>
-            <Button onClick={handleIsRunning} disabled={props.gameState}>
-                {isRunning ? "Stop" : "Start"}
-            </Button>
+
+    useEffect(() => {
+
+        if (countDown === 0) {
+
+            setCountDownRunning(false);
+            setRunning(true);
+            setCountDown(3);
+            props.setGameStarted(true);
+
+            return;
+        }
+
+        let interval;
+        if (countDownRunning) {
+            interval = setInterval(() => {
+                setCountDown(countDown - 1);
+            }, 1000);
+        }
+
+        return () => clearInterval(interval);
+
+    }, [countDownRunning, countDown]);
+
+
+    
+
+    return (
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+            {countDownRunning && (<h5>Game Starts in: {countDown}</h5>)}
+            {(!isRunning && !countDownRunning) &&
+                <Button onClick={() => setCountDownRunning(true)} disabled={isRunning}>
+                    {props.gameOver ? "Play Again" : "Start Game!"}
+                </Button>
+            }
+            <h5>Time Remaining: {time}</h5>
         </div>
     )
 }
