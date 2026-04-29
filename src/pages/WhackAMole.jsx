@@ -12,17 +12,11 @@ export default function WhackAMole(props) {
     const [gameOver, setGameOver] = useState(false);
     const [gameStarted, setGameStarted] = useState(false);
 
+    const [squares, setSquares] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+    const [activeSquares, setActiveSquares] = useState([]);
 
     const [score, setScore] = useState(0);
-
-
-    const [squares, setSquares] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
-
-    const [activeSquares, setActiveSquares] = useState([]);
-    const [bombSquares, setBombSquares] = useState([]);
-
     const [finalScore, setFinalScore] = useState();
-
     const [highScore, setHighScore] = useState(0);
 
 
@@ -69,7 +63,7 @@ export default function WhackAMole(props) {
     }
 
     const handleMiss = () => {
-        if(score === 0){
+        if (score === 0) {
             return;
         }
         generateNewSquare();
@@ -83,17 +77,17 @@ export default function WhackAMole(props) {
 
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>Whack a Bucky!</h1>
-            <h5 style={{ textAlign: "center" }}> Click on bucky when he appears as many times as you can before the time runs out!</h5>
+            <div>
+                <h1 style={{ textAlign: "center" }}>Whack a Bucky!</h1>
+                <h5 style={{ textAlign: "center" }}> Click on bucky when he appears as many times as you can before the time runs out!</h5>
+            </div>
 
             <div style={{ display: "flex", height: "80vh", padding: "20px" }} >
                 <div className="game-area">
                     {!gameOver ?
-                        <div className="game-grid">
+                        <div className="whackAMole-grid">
                             {squares.map((square) => (
                                 <BuckySquare
-                                    key={square}
-                                    number={square}
                                     gameOver={gameOver}
                                     active={activeSquares.includes(square)}
                                     onWhack={handleWhack}
@@ -113,7 +107,7 @@ export default function WhackAMole(props) {
                 </div>
 
                 <div className="info-panel">
-                    <div style={{margin: "20px"}}>
+                    <div style={{ margin: "20px" }}>
                         <h4>Score: {score}</h4>
                         <h4>High Score: {highScore}</h4>
                     </div>

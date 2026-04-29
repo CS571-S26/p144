@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Card } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 
 import holeNoBucky from "../assets/holeNoBucky.png"
 import holeWithBucky from "../assets/holeWithBucky.png"
@@ -40,15 +40,5 @@ function BuckySquare(props) {
             />
         </div>
     )
-
-
-
-
-
-
-
-
-
-
 
 } export default BuckySquare;

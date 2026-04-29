@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 
-export default function Timer(props) {
+export default function StopWatch(props) {
 
-    const [time, setTime] = useState(5);
-    const [countDown, setCountDown] = useState(3);
+
+    const [time, setTime] = useState(0);
+    const [countDown, setCountDown] = useState(1);
 
     const [isRunning, setRunning] = useState(false);
     const [countDownRunning, setCountDownRunning] = useState(false)
@@ -18,11 +19,10 @@ export default function Timer(props) {
             return;
         }
 
-        if (time === 0) {
+        if (props.gameOver) {
             setRunning(false);
-
             //I need to change this to the initial value;
-            setTime(5);
+            setTime(0);
             props.setGameOver(true);
             return;
         }
@@ -30,8 +30,8 @@ export default function Timer(props) {
         let interval;
         if (isRunning) {
             interval = setInterval(() => {
-                setTime(time - 1);
-            }, 1000);
+                setTime(time + 0.01);
+            }, 10);
         }
 
         return () => clearInterval(interval);
@@ -48,7 +48,7 @@ export default function Timer(props) {
         if (countDown === 0) {
             setCountDownRunning(false);
             setRunning(true);
-            setCountDown(3);
+            setCountDown(1);
             props.setGameStarted(true);
             return;
         }
@@ -78,7 +78,7 @@ export default function Timer(props) {
                     {props.gameOver ? "Play Again" : "Start Game!"}
                 </Button>
             }
-            <h5>Time Remaining: {time}</h5>
+            <h5>Time Elapsed: {time.toFixed(2)}</h5>
         </div>
     )
 }

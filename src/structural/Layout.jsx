@@ -12,7 +12,7 @@ function Layout(props) {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="WhackAMole">Whack-A-Bucky</Nav.Link>
-                        <Nav.Link as={Link} to="Memorization">Memorization</Nav.Link>
+                        <Nav.Link as={Link} to="Memorization">Mendota Memorizer</Nav.Link>
                         <Nav.Link as={Link} to="HighScores">High Scores</Nav.Link>
                     </Nav>
                 </Container>
