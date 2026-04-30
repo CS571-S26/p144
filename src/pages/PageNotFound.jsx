@@ -5,8 +5,7 @@ export default function PageNotFound(props){
 
 
     return <div>
-
-        <h1>Page Not Found!</h1>
-        <h5>Please try a different page</h5>
+        <h1 style={{ textAlign: "center" }} >Page Not Found!</h1>
+        <h5 style={{ textAlign: "center" }}>Please try a different page</h5>
     </div>
 }

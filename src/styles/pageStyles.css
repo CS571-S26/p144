@@ -31,7 +31,6 @@
     height: 100%;
 }
 
-
 .game-over {
     display: flex;
     justify-content: center;
@@ -51,4 +50,36 @@
     border-color: black;
     border-radius: 10px;
     background-color: #f8f9fa;
+}
+
+.heart-display {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 2px;
+    border-style: solid;
+    border-radius: 5%;
+
+    height: 20%;
+    width: 80%;
+
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.heart-box {
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+}
+
+.difficulty-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
 }

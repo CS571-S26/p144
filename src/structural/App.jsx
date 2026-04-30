@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes, HashRouter} from 'react-router';
+import { Route, Routes, HashRouter } from 'react-router';
 
 
 
@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage';
 import Memorization from '../pages/Memorization';
 import PageNotFound from '../pages/PageNotFound';
 import HighScores from '../pages/HighScores';
+import GameRules from '../pages/GameRules';
 
 function App() {
 
@@ -16,12 +17,12 @@ function App() {
 
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="WhackAMole" element={<WhackAMole />}></Route>
           <Route path="Memorization" element={<Memorization />}></Route>
           <Route path="HighScores" element={<HighScores />}></Route>
-
+          <Route path="GameRules" element={<GameRules />}> </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
