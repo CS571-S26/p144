@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 export default function Timer(props) {
 
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(20);
     const [countDown, setCountDown] = useState(3);
 
     const [isRunning, setRunning] = useState(false);
@@ -22,7 +22,7 @@ export default function Timer(props) {
             setRunning(false);
 
             //I need to change this to the initial value;
-            setTime(5);
+            setTime(20);
             props.setGameOver(true);
             return;
         }
@@ -75,7 +75,7 @@ export default function Timer(props) {
             {countDownRunning && (<h5>Game Starts in: {countDown}</h5>)}
             {(!isRunning && !countDownRunning) &&
                 <Button onClick={startTimer} disabled={isRunning}>
-                    {props.gameOver ? "Play Again" : "Start Game!"}
+                    Start Game!
                 </Button>
             }
             <h5>Time Remaining: {time}</h5>

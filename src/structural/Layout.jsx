@@ -14,7 +14,6 @@ function Layout(props) {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="HighScores">High Scores</Nav.Link>
-                        <Nav.Link as={Link} to="GameRules">Game Rules</Nav.Link>
                         <NavDropdown title="Games">
                             <NavDropdown.Item as={Link} to="WhackAMole">Whack-A-Bucky</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="Memorization">Mendota Memorizer</NavDropdown.Item>

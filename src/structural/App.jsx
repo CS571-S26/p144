@@ -9,7 +9,6 @@ import HomePage from '../pages/HomePage';
 import Memorization from '../pages/Memorization';
 import PageNotFound from '../pages/PageNotFound';
 import HighScores from '../pages/HighScores';
-import GameRules from '../pages/GameRules';
 
 function App() {
 
@@ -22,7 +21,6 @@ function App() {
           <Route path="WhackAMole" element={<WhackAMole />}></Route>
           <Route path="Memorization" element={<Memorization />}></Route>
           <Route path="HighScores" element={<HighScores />}></Route>
-          <Route path="GameRules" element={<GameRules />}> </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

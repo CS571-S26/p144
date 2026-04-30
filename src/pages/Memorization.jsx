@@ -121,12 +121,6 @@ export default function Memorization(props) {
 
     }, [gameOver])
 
-
-    //Testing function for logging
-    useEffect(() => {
-    }, [squareImages])
-
-
     //Closses model
     function handleEndOfGameClose(closedEndScreen){
 
@@ -270,10 +264,8 @@ export default function Memorization(props) {
                     onClose={handleEndOfGameClose}
                     score={finalScore}
                     highScore={highScore}
+                    gameMode={gameMode}
                 />
-                <Button onClick={() => setShowEndOfGame(true)}>
-                    Show End Game
-                </Button>
             </div>
 
             <div className="info-panel">

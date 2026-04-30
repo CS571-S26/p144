@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 
-export default function EndOfMemoryGameModal(props) {
+export default function EndOfWhackAMoleGameModal(props) {
 
 
     const [newHighScore, setNewHighScore] = useState(false);
@@ -12,13 +12,11 @@ export default function EndOfMemoryGameModal(props) {
         if (props.show) {
             if(props.score > props.highScore){
                 setNewHighScore(true);
-                localStorage.setItem("MEM_HighScore", props.score);
-                localStorage.setItem("MEM_HighScore_Date", new Date());
-                localStorage.setItem("MEM_HighScore_Difficulty", props.gameMode);
+                localStorage.setItem("WAB_HighScore", props.score)
+                localStorage.setItem("WAB_HighScore_Date", new Date())
+                localStorage.setItem("WAB_HighScore_Difficulty", new Date())
             }
         }
-
-
     }, [props.show])
 
 
@@ -43,6 +41,7 @@ export default function EndOfMemoryGameModal(props) {
                 <Button variant="primary" onClick={() => props.onClose()}>
                     Play Again
                 </Button>
+
             </Modal.Footer>
 
         </Modal>

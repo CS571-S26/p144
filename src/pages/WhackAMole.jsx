@@ -4,6 +4,8 @@ import { Button, Row, Col, Container } from "react-bootstrap";
 import Timer from "../components/timer";
 import BuckySquare from "../components/BuckySquare";
 
+import EndOfWhackAMoleGameModal from "../components/models/EndOfWhackAMoleGameModal";
+
 import '../styles/pageStyles.css'
 
 
@@ -16,9 +18,19 @@ export default function WhackAMole(props) {
     const [activeSquares, setActiveSquares] = useState([]);
 
     const [score, setScore] = useState(0);
-    const [finalScore, setFinalScore] = useState();
+    const [finalScore, setFinalScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
 
+    const [showEndOfGame, setShowEndOfGame] = useState(false)
+
+    function handleEndOfGameClose(closedEndScreen) {
+
+        setShowEndOfGame(false);
+        if ((score > highScore)) {
+                setHighScore(score)
+        }
+        setScore(0);
+    }
 
     //Initial Set Up
     useEffect(() => {
@@ -27,7 +39,6 @@ export default function WhackAMole(props) {
         if (currentHighScore) {
             setHighScore(currentHighScore);
         }
-
     }, [])
 
 
@@ -45,13 +56,9 @@ export default function WhackAMole(props) {
 
         if (gameOver) {
 
-            if ((!highScore) || (score > highScore)) {
-                localStorage.setItem("WAB_HighScore", score)
-            }
-
-            setActiveSquares([]);
+            setShowEndOfGame(true);
             setFinalScore(score);
-            setScore(0);
+            setActiveSquares([]);
         }
 
     }, [gameOver])
@@ -84,26 +91,24 @@ export default function WhackAMole(props) {
 
             <div style={{ display: "flex", height: "80vh", padding: "20px" }} >
                 <div className="game-area">
-                    {!gameOver ?
-                        <div className="whackAMole-grid">
-                            {squares.map((square) => (
-                                <BuckySquare
-                                    gameOver={gameOver}
-                                    active={activeSquares.includes(square)}
-                                    onWhack={handleWhack}
-                                    onMiss={handleMiss}
-                                />
-                            ))}
-                        </div>
-                        :
-                        <div className="game-over">
-                            <h1>Game Over!</h1>
-                            <h2>Score: {finalScore}</h2>
-                            {(((highScore < finalScore)) || (!highScore)) &&
-                                <h2>New High Score!!!</h2>
-                            }
-                        </div>
-                    }
+                    <div className="whackAMole-grid">
+                        {squares.map((square, index) => (
+                            <BuckySquare
+                                key={`BuckySquare ${index}`}
+                                gameOver={gameOver}
+                                active={activeSquares.includes(square)}
+                                onWhack={handleWhack}
+                                onMiss={handleMiss}
+                            />
+                        ))}
+                    </div>
+
+                    <EndOfWhackAMoleGameModal
+                        show={showEndOfGame}
+                        onClose={handleEndOfGameClose}
+                        score={finalScore}
+                        highScore={highScore}
+                    />
                 </div>
 
                 <div className="info-panel">
@@ -120,5 +125,4 @@ export default function WhackAMole(props) {
             </div >
         </>
     )
-
 }

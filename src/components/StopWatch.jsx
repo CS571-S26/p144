@@ -97,7 +97,7 @@ export default function StopWatch(props) {
             {props.countDownRunning ? (<h5>Game Starts in: {countDown}</h5>) : (<h5>Memorization Time: {props.countDownTime}</h5>)}
             {(!props.gameStarted && !props.countDownRunning) &&
                 <Button onClick={startGame} disabled={props.gameStarted}>
-                    {props.gameOver ? "Play Again" : "Start Game!"}
+                    Start Game!
                 </Button>
             }
             <h5>Time Elapsed: {(props.time).toFixed(2)}</h5>
