@@ -5,6 +5,7 @@ import Timer from "../components/timer";
 import BuckySquare from "../components/BuckySquare";
 
 import EndOfWhackAMoleGameModal from "../components/models/EndOfWhackAMoleGameModal";
+import DifficultySelector from "../components/DifficultySelector";
 
 import '../styles/pageStyles.css'
 
@@ -23,13 +24,41 @@ export default function WhackAMole(props) {
 
     const [showEndOfGame, setShowEndOfGame] = useState(false)
 
+    const [gameMode, setGameMode] = useState("Easy");
+
+    const [time, setTime] = useState(20);
+    const [difficultyScoreFactor, setDifficultyScoreFactor] = useState(1);
+
+
+    useEffect(() => {
+        console.log(time);
+            switch (gameMode) {
+                case ("Easy"):
+                    setTime(20)
+                    setDifficultyScoreFactor(1);
+                    break;
+    
+                case ("Medium"):
+                    setTime(15)
+                    setDifficultyScoreFactor(2);
+                    break;
+    
+                case ("Hard"):
+                    setTime(10)
+                    setDifficultyScoreFactor(3);
+                    break;
+            }
+    
+        }, [gameMode])
+
     function handleEndOfGameClose(closedEndScreen) {
 
         setShowEndOfGame(false);
-        if ((score > highScore)) {
-                setHighScore(score)
+        if ((finalScore > highScore)) {
+            setHighScore(finalScore)
         }
         setScore(0);
+        setFinalScore(0);
     }
 
     //Initial Set Up
@@ -55,9 +84,8 @@ export default function WhackAMole(props) {
     useEffect(() => {
 
         if (gameOver) {
-
             setShowEndOfGame(true);
-            setFinalScore(score);
+            setFinalScore(score * difficultyScoreFactor);
             setActiveSquares([]);
         }
 
@@ -108,6 +136,7 @@ export default function WhackAMole(props) {
                         onClose={handleEndOfGameClose}
                         score={finalScore}
                         highScore={highScore}
+                        difficulty={gameMode}
                     />
                 </div>
 
@@ -120,7 +149,15 @@ export default function WhackAMole(props) {
                         gameOver={gameOver}
                         setGameOver={setGameOver}
                         setGameStarted={setGameStarted}
+                        time={time}
+                        setTime={setTime}
                     />
+
+                    <DifficultySelector
+                        setGameMode={setGameMode}
+                        gameMode={gameMode}
+                    />
+
                 </div>
             </div >
         </>

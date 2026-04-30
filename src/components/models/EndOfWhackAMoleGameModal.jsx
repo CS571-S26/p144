@@ -14,7 +14,7 @@ export default function EndOfWhackAMoleGameModal(props) {
                 setNewHighScore(true);
                 localStorage.setItem("WAB_HighScore", props.score)
                 localStorage.setItem("WAB_HighScore_Date", new Date())
-                localStorage.setItem("WAB_HighScore_Difficulty", new Date())
+                localStorage.setItem("WAB_HighScore_Difficulty", props.difficulty)
             }
         }
     }, [props.show])

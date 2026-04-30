@@ -16,17 +16,17 @@ export default function HighScores(props) {
     useEffect(() => {
 
         const WAB_Score = localStorage.getItem("WAB_HighScore") ?? 0;
-        const WAB_Time = localStorage.getItem("WAB_HighScore_Date") ?? "No High Score Recorder";
-        //const WAB_Mode = localStorage.getItem("WAB_HighScore_Difficulty") ?? "No High Score Recorder";
+        const WAB_Time = localStorage.getItem("WAB_HighScore_Date") ?? "No High Score Recorded";
+        const WAB_Mode = localStorage.getItem("WAB_HighScore_Difficulty") ?? "No High Score Recorded";
 
         const MEM_Score = localStorage.getItem("MEM_HighScore") ?? 0;
-        const MEM_Time = localStorage.getItem("MEM_HighScore_Date") ?? "No High Score Recorder";
-        const MEM_Mode = localStorage.getItem("MEM_HighScore_Difficulty") ?? "No High Score Recorder";
+        const MEM_Time = localStorage.getItem("MEM_HighScore_Date") ?? "No High Score Recorded";
+        const MEM_Mode = localStorage.getItem("MEM_HighScore_Difficulty") ?? "No High Score Recorded";
 
 
         setWAB_HighScore(WAB_Score);
         setWAB_Date(WAB_Time);
-        setWAB_Difficulty("No Difficulty Available");
+        setWAB_Difficulty(WAB_Mode);
 
         setMEM_HighScore(MEM_Score);
         setMEM_Date(MEM_Time);
