@@ -30,26 +30,55 @@ export default function WhackAMole(props) {
     const [difficultyScoreFactor, setDifficultyScoreFactor] = useState(1);
 
 
+    const [buckyTime, setBuckyTime] = useState(1.5);
+    const [buckyTimeInitial, setBuckyTimeInitial] = useState(1.5);
+
+
+
     useEffect(() => {
-        console.log(time);
-            switch (gameMode) {
-                case ("Easy"):
-                    setTime(20)
-                    setDifficultyScoreFactor(1);
-                    break;
-    
-                case ("Medium"):
-                    setTime(15)
-                    setDifficultyScoreFactor(2);
-                    break;
-    
-                case ("Hard"):
-                    setTime(10)
-                    setDifficultyScoreFactor(3);
-                    break;
-            }
-    
-        }, [gameMode])
+
+        if (!gameStarted || gameOver) { return; }
+        if (buckyTime <= 0) {
+            generateNewSquare();
+            setBuckyTime(buckyTimeInitial);
+            return;
+        }
+
+        let interval;
+        if (gameStarted) {
+            interval = setInterval(() => {
+                setBuckyTime(buckyTime - 0.5);
+            }, 500);
+        }
+        return () => clearInterval(interval);
+    }, [gameStarted, buckyTime]);
+
+
+    useEffect(() => {
+        switch (gameMode) {
+            case ("Easy"):
+                setTime(20)
+                setDifficultyScoreFactor(1);
+                setBuckyTime(1.5);
+                setBuckyTimeInitial(1.5);
+                break;
+
+            case ("Medium"):
+                setTime(15)
+                setDifficultyScoreFactor(2);
+                setBuckyTime(1);
+                setBuckyTimeInitial(1);
+                break;
+
+            case ("Hard"):
+                setTime(10)
+                setDifficultyScoreFactor(3);
+                setBuckyTime(0.5);
+                setBuckyTimeInitial(0.5);
+                break;
+        }
+
+    }, [gameMode])
 
     function handleEndOfGameClose(closedEndScreen) {
 
@@ -94,6 +123,7 @@ export default function WhackAMole(props) {
 
     const handleWhack = () => {
         setScore(oldScore => oldScore + 1);
+        setBuckyTime(buckyTimeInitial)
         generateNewSquare();
     }
 
@@ -102,6 +132,7 @@ export default function WhackAMole(props) {
             return;
         }
         generateNewSquare();
+        setBuckyTime(buckyTimeInitial)
         setScore(oldScore => oldScore - 1);
     }
 

@@ -21,12 +21,6 @@ export default function Timer(props) {
     }, [countDownRunning])
 
 
-    useEffect(()=> {
-        console.log(props.time)
-    }, [props.time])
-
-
-
     useEffect(() => {
 
         if (!isRunning) {

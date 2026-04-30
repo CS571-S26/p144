@@ -15,7 +15,7 @@ function HomePage(props) {
         <p>
             This is a spin on the classic arcade game, Whack-A-Mole. You must "whack" Bucky when he appears from the ground by clicking on him. Be careful, though, because if you click
             a hole that Bucky is not in, you will lose a point! The goal is to get as many points as you can before time runs out! Increasing the difficulty will decrease the amount of time you get to
-            click, but harder difficulties will result in a higher score multiplier!
+            click, but harder difficulties will result in a higher score multiplier! Along with less total time, you also have a shorter time before Bucky switches holes!
         </p>
 
         <h3>Mendota Memorizer</h3>
